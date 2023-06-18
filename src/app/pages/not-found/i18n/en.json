@@ -1,0 +1,9 @@
+{
+  "title": "Title",
+  "quick_access": {
+    "items": {
+      "register_goals": "Register goals",
+      "order_entry": "Order entry"
+    }
+  }
+}

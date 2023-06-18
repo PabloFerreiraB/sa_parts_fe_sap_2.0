@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // redirectTo: '/agco/:token/:dealerNumber/:languageCode',
   {
     path: 'home',
+    title: 'Home',
+    loadComponent: async () => (await import('@pages/home/home.component')).HomeComponent
+  },
+  {
+    path: 'agco/:token/:dealerNumber/:languageCode',
     loadComponent: async () => (await import('@core/components')).InitializerComponent
   },
   {

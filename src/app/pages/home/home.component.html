@@ -1,1 +1,20 @@
-<p>home works!</p>
+<ng-container *transloco="let t">
+  <section>
+    <div>
+      <h3>{{ t('home.title') }}</h3>
+
+      <ul>
+        <li>
+          <a class="link text-sm" [routerLink]="''">
+            {{ t('home.quick_access.items.register_goals') }}
+          </a>
+        </li>
+        <li>
+          <a class="link text-sm" [routerLink]="''">
+            {{ t('home.quick_access.items.order_entry') }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</ng-container>
