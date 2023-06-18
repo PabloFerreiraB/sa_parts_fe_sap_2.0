@@ -1,15 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, finalize, forkJoin, map, of, takeUntil } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { BehaviorSubject, Observable, forkJoin, map } from 'rxjs';
 import { BaseService } from '../base/base.service';
 import { SessionStorageService } from '../sessionStorage/session-storage.service';
-import { AddressBookService } from 'src/app/shared/services/address-book.service';
-import { AutoDestroy } from 'src/app/utils/auto-destroy';
-
-export const configFactory = (config: SecurityService) => {
-  return () => config.getInitial();
-};
+import { AddressBookService } from '@shared/index';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +17,6 @@ export class SecurityService extends BaseService<any, any> {
 
   private sessionStorage = inject(SessionStorageService);
   private addressBookService = inject(AddressBookService);
-
-
 
   public getInitial = () => forkJoin({
     user: this.getUser(),

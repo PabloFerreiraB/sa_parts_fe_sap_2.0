@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-
 import { BaseService } from './base.service';
 
 describe('BaseService', () => {
-  let service: BaseService;
+  let service: BaseService<any, any>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

@@ -1,9 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SecurityService } from '../../services/security/security.service';
 import { Subject, finalize, takeUntil } from 'rxjs';
-import { AutoDestroy } from 'src/app/utils/auto-destroy';
-import { SessionStorageService } from '../../services/sessionStorage/session-storage.service';
+import { AutoDestroy } from '@utils/auto-destroy';
+import { SecurityService, SessionStorageService } from '@core/services';
 
 @Component({
   selector: 'app-initializer',
@@ -25,15 +24,14 @@ export default class InitializerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    console.log('[InitializerComponent] - [ngOnInit]');
     this.setConfigurations();
   }
 
   private setConfigurations(): void {
-    console.log('[InitializerComponent]');
-
     this.service.getInitial().pipe(
       takeUntil(this.destroy$),
-      finalize(() => console.log('Carregando...'))
+      finalize(() => console.log('STOP LOADING...'))
     ).subscribe({
       next: ({ user, franchises, userPermissions, userDealers }): void => {
         console.log('[USERS]', user);
