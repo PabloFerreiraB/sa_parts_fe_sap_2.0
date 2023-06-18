@@ -11,7 +11,7 @@ import { SecurityService, SessionStorageService } from '@core/services';
   templateUrl: './initializer.component.html',
   styleUrls: ['./initializer.component.scss']
 })
-export default class InitializerComponent implements OnInit {
+export class InitializerComponent implements OnInit {
   @AutoDestroy destroy$: Subject<void> = new Subject<void>();
 
   private service = inject(SecurityService);

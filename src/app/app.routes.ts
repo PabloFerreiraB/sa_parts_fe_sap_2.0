@@ -4,7 +4,7 @@ export const routes: Routes = [
   // redirectTo: '/agco/:token/:dealerNumber/:languageCode',
   {
     path: 'home',
-    loadComponent: () => import('./core/components/initializer/initializer.component')
+    loadComponent: async () => (await import('@core/components')).InitializerComponent
   },
   {
     path: '',
@@ -13,6 +13,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () => import('./core/components/initializer/initializer.component')
+    loadComponent: async () => (await import('@pages/not-found/not-found.component')).NotFoundComponent,
   },
 ];
