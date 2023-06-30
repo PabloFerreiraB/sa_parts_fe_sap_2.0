@@ -2,6 +2,12 @@
 @import "./app/scss/variables.scss";
 
 
+:root {
+  --sidenav-width: 300px;
+  --sidenav-collapsed-width: 88px;
+  --sidenav-transition-duration: 400ms;
+}
+
 html,
 body {
   height: 100%;

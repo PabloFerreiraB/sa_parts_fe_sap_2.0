@@ -10,14 +10,12 @@ import { Component, Input, OnChanges } from '@angular/core';
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']
 })
-export class LoadingComponent implements OnChanges, OnInit {
+export class LoadingComponent implements OnInit, OnChanges {
   @Input() show!: boolean;
   @Input() message!: string;
 
   public hideControl = false;
   public loadingUrl!: string;
-
-  constructor() { }
 
   ngOnInit(): void {
     this.loadingUrl = `${location.protocol}//${location.hostname}:${location.port}/assets/logo/loading.gif`;
@@ -31,5 +29,4 @@ export class LoadingComponent implements OnChanges, OnInit {
       this.hideControl = true;
     }
   }
-
 }

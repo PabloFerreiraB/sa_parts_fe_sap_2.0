@@ -13,6 +13,10 @@ export const routes: Routes = [
     loadComponent: async () => (await import('@core/components')).InitializerComponent
   },
   {
+    path: 'settings',
+    loadComponent: async () => (await import('./lib/components/settings/settings.component')).SettingsComponent
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'

@@ -1,5 +1,6 @@
 import { importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
@@ -16,7 +17,7 @@ bootstrapApplication(AppComponent, {
     provideI18nConfig(),
     provideI18nLoader(),
     importProvidersFrom(
-      // BrowserAnimationsModule,
+      BrowserAnimationsModule,
       TranslocoModule,
       TranslocoPersistLangModule.forRoot({
         storage: provideI18nPersistLang(),
