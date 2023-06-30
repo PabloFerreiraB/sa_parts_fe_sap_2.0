@@ -1,4 +1,145 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./app/scss/variables.scss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+pre {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.alert-dialog,
+.confirmation-dialog {
+  mat-dialog-container {
+    mat-dialog-content {
+      margin-top: 2rem;
+
+      p {
+        margin: 0 3rem;
+        text-align: center;
+      }
+    }
+
+    mat-dialog-actions {
+      margin-bottom: 1rem;
+
+      button {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        padding: 0.5rem 2rem;
+        border-radius: 6px;
+        border: 1px solid #b6b6b699;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.justify-dialog {
+  mat-dialog-container {
+    mat-dialog-content {
+      margin-top: 0;
+
+      .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .justifyTitle {
+          width: 100%;
+          flex-wrap: nowrap;
+          margin: 0 2rem;
+
+          h3 {
+            font-weight: bold;
+          }
+        }
+
+        .wrapper-button {
+          flex: 0 0 16.66667%;
+          max-width: 16.66667%;
+
+          button {
+            width: 100%;
+            cursor: pointer;
+          }
+        }
+      }
+
+      form {
+        position: relative;
+        margin-top: 1rem;
+
+        mat-form-field {
+          width: 100%;
+          margin-top: 3rem;
+        }
+      }
+    }
+
+    mat-dialog-actions {
+      margin-bottom: 1rem;
+
+      button {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        padding: 0.5rem 2rem;
+        border-radius: 6px;
+        border: 1px solid #b6b6b699;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.close-back-container {
+  position: absolute;
+  z-index: 1;
+  top: -3px; // Faz com que a borda dos botões fiquem acima da linha das abas ou contextos dos dialogs
+  right: 0;
+
+  .button-exit {
+    border-bottom: 4px solid;
+    border-color: red;
+    border-radius: 0 !important;
+    padding: 0;
+    min-width: 35px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: $font-default;
+    color: $medium-dark;
+  }
+
+  button:not(.button-exit) {
+    border-radius: 0 !important;
+    padding: 0;
+    min-width: 35px;
+    color: $medium-dark;
+    margin-right: 10px;
+    border-bottom: 4px solid;
+    border-color: transparent;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border-color: $blue;
+  }
+
+  .mat-button .mat-button-focus-overlay {
+    background-color: transparent;
+  }
+}

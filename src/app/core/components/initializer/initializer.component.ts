@@ -1,21 +1,29 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Subject, finalize, takeUntil } from 'rxjs';
+import { Observable, Subject, finalize, takeUntil } from 'rxjs';
 import { AutoDestroy } from '@utils/auto-destroy';
 import { SecurityService, SessionStorageService } from '@core/services';
+import { DialogService } from '@core/services/dialog/dialog.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommonService } from 'src/app/lib/services/common.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoadingComponent } from 'src/app/lib/loading/loading.component';
 
 @Component({
   selector: 'app-initializer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatDialogModule, MatSnackBarModule, LoadingComponent],
   templateUrl: './initializer.component.html',
-  styleUrls: ['./initializer.component.scss']
+  styleUrls: ['./initializer.component.scss'],
+  providers: [DialogService, CommonService]
 })
 export class InitializerComponent implements OnInit {
   @AutoDestroy destroy$: Subject<void> = new Subject<void>();
 
+  public commonService = inject(CommonService);
   private service = inject(SecurityService);
   private sessionStorage = inject(SessionStorageService);
+  private dialogService = inject(DialogService);
 
   private config = {
     token: '',
@@ -29,9 +37,11 @@ export class InitializerComponent implements OnInit {
   }
 
   private setConfigurations(): void {
+    this.commonService.startLoading()
+
     this.service.getInitial().pipe(
       takeUntil(this.destroy$),
-      finalize(() => console.log('STOP LOADING...'))
+      finalize(() => this.commonService.stopLoading())
     ).subscribe({
       next: ({ user, franchises, userPermissions, userDealers }): void => {
         console.log('[USERS]', user);
@@ -77,7 +87,9 @@ export class InitializerComponent implements OnInit {
         }
       },
       error: ({ error }) => {
-        console.log('Sistema indisponível no momento.', error.message);
+        this.dialogService.alert(
+          error.message || 'Sistema indisponível no momento.'
+        );
       },
     })
   }

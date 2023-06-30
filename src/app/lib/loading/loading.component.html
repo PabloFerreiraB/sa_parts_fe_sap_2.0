@@ -1,0 +1,8 @@
+<div *ngIf="hideControl" class="app-loading" [ngClass]="show? 'forward': 'reverse'">
+  <div class="d-flex justify-content-center">
+    <!-- <p>{{ message }}</p>
+    <mat-spinner class="ml-2" diameter="20"></mat-spinner> -->
+    <img [src]="loadingUrl" width="100" alt="Carregando" />
+  </div>
+</div>
+<div *ngIf="hideControl" [ngClass]="show? 'forward-bg': 'reverse-bg'" class="cover-spin"></div>

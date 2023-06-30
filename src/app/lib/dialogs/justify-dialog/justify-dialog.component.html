@@ -1,0 +1,37 @@
+<mat-dialog-content class="mt-0">
+  <div class="container">
+    <div class="justifyTitle">
+      <h3>{{ data.justifyTitle }}</h3>
+    </div>
+
+    <div class="wrapper-button" *ngIf="data.disabled == false">
+      <button color="primary" mat-flat-button (click)="save()">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form" *ngIf="form">
+    <mat-tab-group>
+      <mat-tab label="{{ data.justifyTab }}">
+        <mat-form-field floatLabel="always" class="w-100 mt-3" appearance="outline">
+          <mat-label>{{ data.justifyLabel }}</mat-label>
+          <textarea matInput formControlName="justifyText" rows="10" style="resize: none;"></textarea>
+          <mat-error
+            *ngIf="form.controls['justifyText'].invalid && form.controls['justifyText'].errors?.['maxlength']">Este
+            campoé limitado a 4000 caracteres
+          </mat-error>
+
+          <mat-error
+            *ngIf="form.controls['justifyText'].invalid && form.controls['justifyText'].errors?.['invalidText']">{{
+            form.controls['justifyText'].errors?.['invalidText'] }}
+          </mat-error>
+        </mat-form-field>
+      </mat-tab>
+    </mat-tab-group>
+
+    <div class="close-back-container">
+      <button mat-button class="button-exit" [mat-dialog-close]="false">Sair</button>
+    </div>
+  </form>
+</mat-dialog-content>

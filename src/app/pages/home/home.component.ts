@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { provideI18nInlineLoader } from '@core/i18n';
+import { CommonService } from 'src/app/lib/services/common.service';
 
 @Component({
   standalone: true,
@@ -14,8 +15,7 @@ import { provideI18nInlineLoader } from '@core/i18n';
       scope: 'pages/home',
       alias: 'home',
     }),
+    CommonService
   ],
 })
-export class HomeComponent {
-
-}
+export class HomeComponent { }

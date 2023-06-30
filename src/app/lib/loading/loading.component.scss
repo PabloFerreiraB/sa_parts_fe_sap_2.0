@@ -1,0 +1,55 @@
+.app-loading {
+    position: fixed;
+    left: calc(50% - 40px);
+    top: calc(50% - 60px);
+    z-index: 999999;
+}
+
+.forward {
+    animation: fade 0.5s ease-in-out;
+}
+
+.forward-bg {
+    animation: fade 0.1s ease-in-out;
+}
+
+.reverse {
+    animation: fadeout 0.2s ease-in-out forwards;
+}
+
+.reverse-bg {
+    animation: fadeout 1s ease-in-out forwards;
+}
+
+.cover-spin {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.2);
+    z-index: 999999;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        display: none;
+    }
+    to {
+        opacity: 1;
+        display: block;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+        display: block;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+}

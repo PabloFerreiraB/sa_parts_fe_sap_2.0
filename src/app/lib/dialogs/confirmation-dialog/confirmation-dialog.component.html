@@ -1,0 +1,14 @@
+<mat-dialog-content>
+  <p [innerHTML]="message"></p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button color="accent" mat-flat-button [mat-dialog-close]="true">
+    <mat-icon>check_circle</mat-icon> Sim
+  </button>
+
+  <button cdkFocusInitial mat-flat-button color="primary" [mat-dialog-close]="false">
+    <mat-icon>cancel</mat-icon>
+    Não
+  </button>
+</mat-dialog-actions>

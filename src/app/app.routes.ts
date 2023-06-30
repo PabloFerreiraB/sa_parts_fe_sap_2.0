@@ -8,6 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'agco/:token/:dealerNumber/:languageCode',
+    title: 'Registrando configurações',
     loadComponent: async () => (await import('@core/components')).InitializerComponent
   },
   {
