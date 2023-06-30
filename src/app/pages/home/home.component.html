@@ -23,4 +23,40 @@
   <p ellipsis>Bob and Pete's Automotive Garage</p>
 </div> -->
 
-<router-outlet></router-outlet>
+<app-loading [show]="commonService.isLoading"></app-loading>
+
+<mat-form-field floatLabel="always" appearance="outline" class="full-width">
+  <mat-label>Nome completo</mat-label>
+  <input matInput>
+</mat-form-field>
+
+<div class="content">
+  <form class="my-3" [formGroup]="form" *ngIf="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field floatLabel="always" appearance="outline" style="width: 100%;">
+          <mat-label>Nome completo</mat-label>
+          <input matInput formControlName="nome" aria-label="Nome completo" />
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-8">
+        <mat-form-field floatLabel="always" style="width: 100%;" appearance="outline" class="custom-form-field">
+          <mat-label>Observação</mat-label>
+          <textarea matInput customTextAreaCount formControlName="observacao" rows="6" style="resize: none"></textarea>
+
+          <mat-error *ngIf="form.get('observacao')?.invalid && form.get('observacao')?.errors?.['maxlength']">
+            Este campo é limitado a 4000 caracteres
+          </mat-error>
+
+          <mat-error *ngIf="form.get('observacao')?.invalid &&
+                            form.get('observacao')?.errors?.['invalidText'] &&
+                           !form.get('observacao')?.errors?.['maxlength']">
+
+            {{ form.get('observacao')?.errors?.['invalidText']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>

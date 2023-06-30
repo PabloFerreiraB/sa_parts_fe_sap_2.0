@@ -149,3 +149,18 @@ pre {
     background-color: transparent;
   }
 }
+
+.custom-error-counter {
+  width: 100%;
+  position: relative;
+  display: block;
+  text-align: right;
+  top: -15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #212529;
+
+  &.invalid {
+    color: red;
+  }
+}

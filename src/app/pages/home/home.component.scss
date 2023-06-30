@@ -1,0 +1,91 @@
+.full-width {
+  width: 50%;
+}
+
+$font-default: 16px;
+
+
+// Change mat input disabled
+::ng-deep .mdc-text-field--disabled .mdc-floating-label {
+  color: #363636;
+
+  &::after {
+    color: #363636;
+    font-family: "Material Icons";
+    font-size: $font-default;
+    content: "lock";
+    background-color: inherit;
+    padding: 5px;
+    margin-top: -5px;
+    display: inline-block; // Adicionado para garantir o posicionamento correto do ícone
+    vertical-align: middle; // Adicionado para garantir o posicionamento correto do ícone
+    margin-left: 5px; // Adicionado para ajustar o espaçamento entre o ícone e o texto
+  }
+}
+
+// Change mat input disabled border color
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline__trailing {
+  border-color: #d1d1d1;
+}
+
+// For input disabled
+::ng-deep .mdc-text-field .mdc-text-field__input {
+  color: #363636;
+}
+
+// For INPUT_NOT_TOUCHED
+::ng-deep .mdc-notched-outline>* {
+  border-color: #646464;
+}
+
+// Change to change outline color same as border color in mat input
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline>* {
+  border-color: #363636;
+  border-width: 2px;
+}
+
+// For INPUT_FOCUSED:
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline>* {
+  border-color: #1ba2e8;
+  border-width: 2px;
+}
+
+::ng-deep .mdc-text-field--focused:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid) .mdc-floating-label {
+  color: #1ba2e8;
+}
+
+// For INPUT_ERROR:
+::ng-deep .mdc-text-field--invalid .mdc-notched-outline>* {
+  border-color: red !important;
+}
+
+// For input height
+::ng-deep .mat-mdc-text-field-wrapper {
+  height: 46px !important;
+}
+
+// For inside input with text position
+::ng-deep .mat-mdc-input-element {
+  top: -3px !important;
+  position: relative !important;
+}
+
+
+// // change Left Side shape radius
+// ::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+//   width: max(16px, var(--mdc-shape-small, 34px)) !important;
+// }
+
+// // change Left Side border radius
+// ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading {
+//   border-top-left-radius: 220px !important;
+//   border-bottom-left-radius: 220px !important;
+// }
+
+// // change Right Side border radius
+// ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+//   border-top-right-radius: 40px !important;
+//   border-bottom-right-radius: 40px !important;
+// }

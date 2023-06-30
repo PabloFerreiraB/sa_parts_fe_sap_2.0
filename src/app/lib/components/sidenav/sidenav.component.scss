@@ -117,7 +117,7 @@
   position: absolute;
   top: 48px;
   // the -2px is to get the alignment just right
-  right: calc($size / -2) - 2px;
+  right: calc($size / -2);
 
   border: 1px solid gray;
   border-radius: 50%;

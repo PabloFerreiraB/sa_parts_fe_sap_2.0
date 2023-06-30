@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { ValidatorFn } from '@angular/forms';
 
@@ -86,5 +86,9 @@ export class CommonService {
         return { invalidText: error };
       }
     }
+  }
+
+  public asFormGroup(field: AbstractControl | null): FormGroup {
+    return field as FormGroup;
   }
 }

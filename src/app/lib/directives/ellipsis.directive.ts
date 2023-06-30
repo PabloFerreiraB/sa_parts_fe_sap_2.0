@@ -1,8 +1,8 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[ellipsis]',
-  standalone: true
+  standalone: true,
+  selector: '[ellipsis]'
 })
 export class EllipsisDirective implements AfterViewInit {
   @Input() public tooltipText!: string;
