@@ -32,7 +32,6 @@ export class InitializerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log('[InitializerComponent] - [ngOnInit]');
     this.setConfigurations();
   }
 

@@ -7,6 +7,7 @@ export const routes: Routes = [
     loadComponent: async () => (await import('@pages/home/home.component')).HomeComponent
   },
   {
+    // path: 'home',
     path: 'agco/:token/:dealerNumber/:languageCode',
     title: 'Registrando configurações',
     loadComponent: async () => (await import('@core/components')).InitializerComponent
