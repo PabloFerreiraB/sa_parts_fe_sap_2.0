@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, Subject, finalize, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { AutoDestroy } from '@utils/auto-destroy';
 import { SecurityService, SessionStorageService } from '@core/services';
 import { DialogService } from '@core/services/dialog/dialog.service';

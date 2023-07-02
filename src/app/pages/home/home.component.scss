@@ -1,7 +1,3 @@
-.full-width {
-  width: 50%;
-}
-
 $font-default: 16px;
 
 // Change mat input disabled
@@ -82,6 +78,13 @@ $font-default: 16px;
 // For input height
 ::ng-deep .mat-mdc-text-field-wrapper {
   height: 46px !important;
+}
+
+
+.custom-form-field-text-area {
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 170px !important;
+  }
 }
 
 // For inside input with text position

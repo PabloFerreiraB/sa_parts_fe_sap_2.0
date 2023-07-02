@@ -25,23 +25,27 @@
 
 <app-loading [show]="commonService.isLoading"></app-loading>
 
-<mat-form-field floatLabel="always" appearance="outline" class="full-width">
-  <mat-label>Nome completo</mat-label>
-  <input matInput>
-</mat-form-field>
-
-<div class="content">
+<div class="row justify-content-between">
   <form novalidate class="my-3" [formGroup]="form" *ngIf="form">
     <div class="row">
-      <div class="col-sm-6">
-        <mat-form-field floatLabel="always" appearance="outline" style="width: 100%;">
+      <div class="col-sm-4">
+        <mat-form-field floatLabel="always" appearance="outline" class="w-100">
           <mat-label>Nome completo</mat-label>
           <input matInput formControlName="nome" aria-label="Nome completo" />
         </mat-form-field>
       </div>
 
+      <div class="col-sm-4">
+        <mat-form-field floatLabel="always" appearance="outline" class="w-100">
+          <mat-label>Nome completo</mat-label>
+          <input matInput formControlName="nome" aria-label="Nome completo" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-sm-8">
-        <mat-form-field floatLabel="always" style="width: 100%;" appearance="outline" class="custom-form-field">
+        <mat-form-field floatLabel="always" class="w-100 custom-form-field-text-area" appearance="outline">
           <mat-label>Observação</mat-label>
           <textarea matInput customTextAreaCount formControlName="observacao" rows="6" style="resize: none"></textarea>
 
@@ -66,8 +70,22 @@
     <button mat-stroked-button color="primary" (click)="save()">Salvar</button>
   </div>
 
-  <code>
+  <!-- <code>
     <pre>{{ form.valid | json }}</pre>
     <pre>{{ form.value | json }}</pre>
-  </code>
+  </code> -->
+</div>
+
+<div>
+  <div class="row justify-content-between">
+    <sipol-dynamic-table [select]="false" [columns]="columns" [rows]="rows" [pageSize]="pagination.pageSize"
+      [totalElements]="pagination.length" [actions]="actions" (actionClick)="runAction($event)"
+      (sortChange)="sortData($event)" (pageChange)="pageData($event)">
+      <ng-container *dynamicTableColumnDef="'dtValidade'; let element">
+        {{ element.dtValidade | date : "dd/MM/YYYY" }}
+      </ng-container>
+
+    </sipol-dynamic-table>
+  </div>
+
 </div>

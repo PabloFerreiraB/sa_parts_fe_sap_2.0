@@ -1,0 +1,156 @@
+<ng-template #rightActionsTemplate let-element let-displayLabel="displayLabel">
+  <mat-icon *ngFor="let action of rightActions | actionFilter: element" style="cursor: pointer;"
+    fontSet="{{action.iconSet}}" (click)="onActionClick(element, action.name)"
+    (mouseenter)="labelAcaoAtualtemListaMenu = action.label ?? action.tooltip">
+    {{ action.icon }}
+  </mat-icon>
+</ng-template>
+
+<table mat-table [dataSource]="dataSource" cdkDropList #table1 #list1="cdkDropList" [cdkDropListData]="dataSource.data"
+  (cdkDropListDropped)="dropEvent($event)" multiTemplateDataRows class="w-100 table-overflow-component" matSort
+  (matSortChange)="onSortChange($event)">
+  <!-- Expanse Menu Column -->
+  <ng-container *ngIf="expandedDetail" matColumnDef="detail">
+    <th mat-header-cell *matHeaderCellDef class="w-5"></th>
+    <td mat-cell *matCellDef="let row; let i = dataIndex" [dynamicAttribute]="menuCollapsedColumnAttr"
+      class="align-middle">
+      <button mat-icon-button aria-label="expand row" (click)="toggleExpanse(i, row)" class="mt-0">
+        <mat-icon>{{ detailExpanseIndex === i ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+
+  <!-- Drag n Drop Column -->
+  <ng-container *ngIf="dragabble" matColumnDef="dragabble">
+    <th class="w-5" mat-header-cell *matHeaderCellDef>
+      &nbsp;
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-icon style="cursor: pointer;" fontSet="material-symbols-outlined">drag_indicator</mat-icon>
+    </td>
+  </ng-container>
+
+  <!-- Checkbox Column -->
+  <ng-container *ngIf="select" matColumnDef="select">
+    <th class="w-5" mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? toggleAllRows($event) : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()" [matTooltip]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selectRow(row, $event) : null"
+        [checked]="selection.isSelected(row)" [matTooltip]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Table Column -->
+  <ng-container [matColumnDef]="column.name" *ngFor="let column of columns; let i = index;">
+    <th mat-header-cell *matHeaderCellDef [dynamicAttribute]="column.headerAttrs"
+      [mat-sort-header]="column.sortColumn ?? column.name" [disabled]="column.sortColumn === undefined" class="px-2">
+      <ng-container [ngSwitch]="column.titleType">
+        <mat-icon *ngSwitchCase="titleType.ICON" [dynamicAttribute]="column.titleIconAttrs">
+          {{ column.title }}
+        </mat-icon>
+        <ng-container *ngSwitchCase="titleType.SLOT"
+          [ngTemplateOutlet]="headerTemplate.get(column.name)!"></ng-container>
+        <ng-container *ngSwitchDefault>{{ column.title }}</ng-container>
+      </ng-container>
+    </th>
+    <td mat-cell [dynamicAttribute]="column.columnAttrs" *matCellDef="let element" class="px-2 overflow-detect">
+      <span #overflowSpan [matTooltip]="isEllipsisActive(overflowSpan) ? element[column.name] : ''"
+        class="overflow-detect-span">
+        <ng-template #dataText>{{ element[column.name] }}</ng-template>
+
+        <ng-container *ngIf="column.type === columnType.SLOT; else dataText"
+          [ngTemplateOutlet]="template.get(column.name)!"
+          [ngTemplateOutletContext]="{ $implicit: element }"></ng-container>
+      </span>
+    </td>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container *ngIf="rightActions.length > 0" matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef [dynamicAttribute]="actionColumnAttr?.right?.header">Ações</th>
+    <td mat-cell *matCellDef="let element; let i = dataIndex" style="position: relative;"
+      [dynamicAttribute]="actionColumnAttr?.right?.body">
+      <ng-container *ngIf="!groupedActions; else groupedMenu" [ngTemplateOutlet]="rightActionsTemplate"
+        [ngTemplateOutletContext]="{ $implicit: element }">
+      </ng-container>
+
+      <ng-template #groupedMenu>
+        <ng-container *ngIf="!hideMenuIfEmpty || (rightActions | actionFilter: element).length">
+          <mat-icon [hidden]="menuIndex === i" style="cursor: pointer;" (click)="menuIndex = i">
+            menu
+          </mat-icon>
+
+          <div *ngIf="menuIndex === i" class="tab-row-menu" [ngClass]="{ 'light-theme': actionLightTheme }">
+            <div class="label-txt">{{ labelAcaoAtualtemListaMenu }}</div>
+            <ng-container [ngTemplateOutlet]="rightActionsTemplate"
+              [ngTemplateOutletContext]="{ $implicit: element }"></ng-container>
+            <mat-icon (click)="menuIndex = undefined" (mouseenter)="labelAcaoAtualtemListaMenu = 'Fechar'"
+              style="cursor: pointer;" class="cancel" aria-label="Fechar menu">
+              cancel
+            </mat-icon>
+          </div>
+        </ng-container>
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element; let i = dataIndex" [attr.colspan]="headers.length" class="p-0">
+      <div class="element-detail" [@detailExpand]="detailExpanseIndex == i ? 'expanded' : 'collapsed'">
+        <ng-container [ngTemplateOutlet]="template.get('subtable')!"
+          [ngTemplateOutletContext]="{ $implicit: element['_children'] }">
+        </ng-container>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container *ngIf="header">
+    <tr mat-header-row *matHeaderRowDef="headers"></tr>
+  </ng-container>
+
+  <tr mat-row cdkDrag [cdkDragDisabled]="!dragabble" *matRowDef="let row; columns: headers; let i = dataIndex"
+    [class.expanded-row]="detailExpanseIndex === i" [class.table-odd-row]="(i%2)==0" [class.table-even-row]="(i%2)==1">
+  </tr>
+
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row table-detail-row"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="no-data-row" [attr.colspan]="headers.length">
+      <div class="ps-3 text-center">Sem registro</div>
+    </td>
+  </tr>
+
+  <ng-container *ngIf="bottomActions.length > 0">
+
+    <ng-container matColumnDef="footer">
+      <td mat-footer-cell *matFooterCellDef [attr.colspan]="headers.length" class="footer-row"
+        [dynamicAttribute]="actionColumnAttr?.bottom">
+        <ng-container *ngFor="let action of bottomActions">
+          <p (click)="onActionClick(null, action.name)" *ngIf="!action.conditional || action.conditional()">
+            <mat-icon aria-hidden="false" [matTooltip]="action.tooltip">
+              {{ action.icon }}
+            </mat-icon>
+            <span>{{ action.label ?? action.tooltip }}</span>
+          </p>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-footer-row *matFooterRowDef="['footer']"></tr>
+  </ng-container>
+</table>
+
+<div class="mat-paginator-com-acoes-extras-container" *ngIf="pagination">
+  <div class="mat-paginator-content">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [length]="totalElements" [pageIndex]="pageIndex"
+      [pageSize]="pageSize" showFirstLastButtons (page)="onPageChange($event)" aria-label="Selecionar Página"
+      formFieldAppearance="fill">
+    </mat-paginator>
+  </div>
+</div>
