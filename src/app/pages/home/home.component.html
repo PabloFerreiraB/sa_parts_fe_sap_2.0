@@ -31,7 +31,7 @@
 </mat-form-field>
 
 <div class="content">
-  <form class="my-3" [formGroup]="form" *ngIf="form">
+  <form novalidate class="my-3" [formGroup]="form" *ngIf="form">
     <div class="row">
       <div class="col-sm-6">
         <mat-form-field floatLabel="always" appearance="outline" style="width: 100%;">
@@ -59,4 +59,15 @@
       </div>
     </div>
   </form>
+
+  <div style="display: flex; gap: 15px;">
+    <button mat-stroked-button color="primary" (click)="disable()">Disable</button>
+    <button mat-stroked-button color="primary" (click)="enable()">Enable</button>
+    <button mat-stroked-button color="primary" (click)="save()">Salvar</button>
+  </div>
+
+  <code>
+    <pre>{{ form.valid | json }}</pre>
+    <pre>{{ form.value | json }}</pre>
+  </code>
 </div>

@@ -4,22 +4,40 @@
 
 $font-default: 16px;
 
-
 // Change mat input disabled
 ::ng-deep .mdc-text-field--disabled .mdc-floating-label {
   color: #363636;
 
   &::after {
+    font-size: $font-default;
     color: #363636;
     font-family: "Material Icons";
-    font-size: $font-default;
     content: "lock";
     background-color: inherit;
     padding: 5px;
-    margin-top: -5px;
+    margin: -5px 0px 0px -5px;
     display: inline-block; // Adicionado para garantir o posicionamento correto do ícone
     vertical-align: middle; // Adicionado para garantir o posicionamento correto do ícone
-    margin-left: 5px; // Adicionado para ajustar o espaçamento entre o ícone e o texto
+  }
+}
+
+// For remove disabled asterisk
+::ng-deep .mdc-text-field {
+  .mdc-floating-label {
+    .mat-mdc-form-field-required-marker {
+      display: none;
+    }
+  }
+}
+
+// Change mat input disabled asterisk color
+::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) {
+  .mdc-floating-label {
+    .mat-mdc-form-field-required-marker {
+      margin-left: 5px;
+      display: inline-block;
+      color: red;
+    }
   }
 }
 
