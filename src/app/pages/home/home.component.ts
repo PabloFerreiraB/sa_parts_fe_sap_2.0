@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CustomTextAreaCountDirective } from 'src/app/lib/directives/custom-text-area-count.directive';
 import { MatButtonModule } from '@angular/material/button';
-import { ActionClickEvent, Actions, ButtonPositionEnum, Column, ColumnTypeEnum, SipolDynamicTableModule } from 'src/app/lib/components/dynamic-table';
+import { ActionClickEvent, Actions, ButtonPositionEnum, Column, ColumnTypeEnum, DynamicTableModule } from 'src/app/lib/components/dynamic-table';
 import { DialogService } from '@core/services/dialog/dialog.service';
 import { HttpParams } from '@angular/common/http';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -34,7 +34,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    SipolDynamicTableModule,
+    DynamicTableModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
@@ -74,10 +74,10 @@ export class HomeComponent implements OnInit {
       title: "Tipo de documento",
       sortColumn: "doc.tipoDocumento",
       headerAttrs: {
-        class: "w-10 text-nowrap",
+        class: "w-35 text-nowrap ps-4",
       },
       columnAttrs: {
-        class: "overflow-detect",
+        class: "overflow-detect ps-4",
       },
     },
     {
@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit {
       title: "Porte de arma",
       sortColumn: "doc.porteArma",
       headerAttrs: {
-        class: "w-10",
+        class: "w-15",
       },
       columnAttrs: {
         class: "",
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
       title: "Registro",
       sortColumn: "doc.status",
       headerAttrs: {
-        class: "w-10",
+        class: "w-15",
       },
       columnAttrs: {
         class: "",
@@ -353,6 +353,148 @@ const DATA: any = {
       dtCadastro: "2023-06-27T20:31:52.000Z",
       idUsuarioAtualizacao: 1,
       dtAtualizacao: "2023-06-29T19:10:02.000Z"
+    },
+    {
+      alunoDocumentoId: 210,
+      alunoId: 121,
+      tipoDocumento: {
+        id: 6,
+        descricao: "Carteira de Trabalho e Previdência Social - CTPS"
+      },
+      tipoDocumentoId: 6,
+      tipo: null,
+      orgaoExpedidorId: null,
+      dtExpedicao: null,
+      ufId: null,
+      categoriaCnh: null,
+      categoriaCnhId: null,
+      zonaEleitoral: null,
+      secaoEleitoral: null,
+      tipoCertidao: null,
+      tipoCertidaoId: null,
+      nmCartorio: null,
+      nrFolha: null,
+      descTermo: null,
+      descLivro: null,
+      dtValidade: "2023-06-29T03:00:00.000Z",
+      condicaoId: null,
+      nrDocumento: "1111111111",
+      porteArma: "N",
+      observacao: "TESTE TESTE",
+      status: "A",
+      principal: "S",
+      idUsuarioCadastro: 1,
+      dtCadastro: "2023-06-27T20:23:17.000Z",
+      idUsuarioAtualizacao: 1,
+      dtAtualizacao: "2023-06-29T19:09:22.000Z"
+    },
+    {
+      alunoDocumentoId: 211,
+      alunoId: 121,
+      tipoDocumento: {
+        id: 5,
+        descricao: "Carteira Nacional de Habilitação - CNH"
+      },
+      tipoDocumentoId: 5,
+      tipo: null,
+      orgaoExpedidorId: null,
+      dtExpedicao: null,
+      ufId: null,
+      categoriaCnh: {
+        id: 2,
+        description: "AB"
+      },
+      categoriaCnhId: 2,
+      zonaEleitoral: null,
+      secaoEleitoral: null,
+      tipoCertidao: null,
+      tipoCertidaoId: null,
+      nmCartorio: null,
+      nrFolha: null,
+      descTermo: null,
+      descLivro: null,
+      dtValidade: "2028-06-30T03:00:00.000Z",
+      condicaoId: null,
+      nrDocumento: "123123123",
+      porteArma: "N",
+      observacao: "CATEGORIA A",
+      status: "A",
+      principal: "N",
+      idUsuarioCadastro: 1,
+      dtCadastro: "2023-06-27T20:31:52.000Z",
+      idUsuarioAtualizacao: 1,
+      dtAtualizacao: "2023-06-29T19:10:02.000Z"
+    },
+    {
+      alunoDocumentoId: 210,
+      alunoId: 121,
+      tipoDocumento: {
+        id: 6,
+        descricao: "Carteira de Trabalho e Previdência Social - CTPS"
+      },
+      tipoDocumentoId: 6,
+      tipo: null,
+      orgaoExpedidorId: null,
+      dtExpedicao: null,
+      ufId: null,
+      categoriaCnh: null,
+      categoriaCnhId: null,
+      zonaEleitoral: null,
+      secaoEleitoral: null,
+      tipoCertidao: null,
+      tipoCertidaoId: null,
+      nmCartorio: null,
+      nrFolha: null,
+      descTermo: null,
+      descLivro: null,
+      dtValidade: "2023-06-29T03:00:00.000Z",
+      condicaoId: null,
+      nrDocumento: "1111111111",
+      porteArma: "N",
+      observacao: "TESTE TESTE",
+      status: "A",
+      principal: "S",
+      idUsuarioCadastro: 1,
+      dtCadastro: "2023-06-27T20:23:17.000Z",
+      idUsuarioAtualizacao: 1,
+      dtAtualizacao: "2023-06-29T19:09:22.000Z"
+    },
+    {
+      alunoDocumentoId: 211,
+      alunoId: 121,
+      tipoDocumento: {
+        id: 5,
+        descricao: "Carteira Nacional de Habilitação - CNH"
+      },
+      tipoDocumentoId: 5,
+      tipo: null,
+      orgaoExpedidorId: null,
+      dtExpedicao: null,
+      ufId: null,
+      categoriaCnh: {
+        id: 2,
+        description: "AB"
+      },
+      categoriaCnhId: 2,
+      zonaEleitoral: null,
+      secaoEleitoral: null,
+      tipoCertidao: null,
+      tipoCertidaoId: null,
+      nmCartorio: null,
+      nrFolha: null,
+      descTermo: null,
+      descLivro: null,
+      dtValidade: "2028-06-30T03:00:00.000Z",
+      condicaoId: null,
+      nrDocumento: "123123123",
+      porteArma: "N",
+      observacao: "CATEGORIA A",
+      status: "A",
+      principal: "N",
+      idUsuarioCadastro: 1,
+      dtCadastro: "2023-06-27T20:31:52.000Z",
+      idUsuarioAtualizacao: 1,
+      dtAtualizacao: "2023-06-29T19:10:02.000Z"
     }
   ],
   totalRecords: 2,
@@ -360,3 +502,4 @@ const DATA: any = {
   currentPage: 0,
   pageSize: 10
 }
+

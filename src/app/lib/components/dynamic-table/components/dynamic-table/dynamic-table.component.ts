@@ -42,7 +42,7 @@ import { HeaderTemplateDefDirective } from '../../directive/header-template-def.
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: 'sipol-dynamic-table',
+  selector: 'app-dynamic-table',
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss'],
   animations: [

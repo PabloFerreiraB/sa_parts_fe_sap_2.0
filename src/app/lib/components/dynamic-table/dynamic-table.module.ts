@@ -39,4 +39,4 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DynamicTableComponent
   ]
 })
-export class SipolDynamicTableModule { }
+export class DynamicTableModule { }

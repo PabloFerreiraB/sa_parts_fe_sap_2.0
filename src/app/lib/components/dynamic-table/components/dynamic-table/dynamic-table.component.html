@@ -7,8 +7,9 @@
 </ng-template>
 
 <table mat-table [dataSource]="dataSource" cdkDropList #table1 #list1="cdkDropList" [cdkDropListData]="dataSource.data"
-  (cdkDropListDropped)="dropEvent($event)" multiTemplateDataRows class="w-100 table-overflow-component" matSort
+  (cdkDropListDropped)="dropEvent($event)" multiTemplateDataRows class="custom-table table-overflow-component" matSort
   (matSortChange)="onSortChange($event)">
+
   <!-- Expanse Menu Column -->
   <ng-container *ngIf="expandedDetail" matColumnDef="detail">
     <th mat-header-cell *matHeaderCellDef class="w-5"></th>
@@ -19,7 +20,6 @@
       </button>
     </td>
   </ng-container>
-
 
   <!-- Drag n Drop Column -->
   <ng-container *ngIf="dragabble" matColumnDef="dragabble">

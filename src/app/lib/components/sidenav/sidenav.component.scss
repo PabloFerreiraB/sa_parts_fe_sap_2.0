@@ -48,7 +48,7 @@
 }
 
 .sidenav-body {
-  width: 100% !important;
+  width: 100%;
   overflow-x: hidden;
 
   &.slide-in-from-left {
@@ -63,7 +63,7 @@
 .resize-handle {
   height: 100%;
   background-color: rgb(165, 165, 165);
-  width: 2px;
+  width: 1px;
   position: absolute;
   top: 0;
   right: 0;
@@ -80,7 +80,7 @@
   transition: background-color 0.2s ease-out;
 
   &:hover {
-    width: 3px;
+    width: 2px;
     background-color: rgb(93, 159, 235);
   }
 
@@ -104,28 +104,21 @@
 
 .toggle-button {
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   $size: 30px;
   width: $size;
   height: $size;
   margin: 0;
   padding: 0;
-
   position: absolute;
   top: 48px;
   // the -2px is to get the alignment just right
   right: calc($size / -2);
-
   border: 1px solid gray;
   border-radius: 50%;
-
   background-color: white;
-
   cursor: pointer;
-
   z-index: 2;
 
   &:hover {
@@ -138,7 +131,6 @@
 
   mat-icon {
     font-size: 1.5em;
-
     width: fit-content;
     height: fit-content;
   }

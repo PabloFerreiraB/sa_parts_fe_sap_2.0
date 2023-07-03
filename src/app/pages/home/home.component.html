@@ -1,4 +1,6 @@
-<!-- <ng-container *transloco="let t">
+<app-loading [show]="commonService.isLoading"></app-loading>
+
+<ng-container *transloco="let t">
   <section>
     <div>
       <h3>{{ t('home.title') }}</h3>
@@ -21,9 +23,7 @@
 
 <div style="width: 150px;">
   <p ellipsis>Bob and Pete's Automotive Garage</p>
-</div> -->
-
-<app-loading [show]="commonService.isLoading"></app-loading>
+</div>
 
 <div class="row justify-content-between">
   <form novalidate class="my-3" [formGroup]="form" *ngIf="form">
@@ -64,28 +64,21 @@
     </div>
   </form>
 
-  <div style="display: flex; gap: 15px;">
+  <div class="d-flex gap-3">
     <button mat-stroked-button color="primary" (click)="disable()">Disable</button>
     <button mat-stroked-button color="primary" (click)="enable()">Enable</button>
     <button mat-stroked-button color="primary" (click)="save()">Salvar</button>
   </div>
-
-  <!-- <code>
-    <pre>{{ form.valid | json }}</pre>
-    <pre>{{ form.value | json }}</pre>
-  </code> -->
 </div>
 
-<div>
-  <div class="row justify-content-between">
-    <sipol-dynamic-table [select]="false" [columns]="columns" [rows]="rows" [pageSize]="pagination.pageSize"
-      [totalElements]="pagination.length" [actions]="actions" (actionClick)="runAction($event)"
-      (sortChange)="sortData($event)" (pageChange)="pageData($event)">
-      <ng-container *dynamicTableColumnDef="'dtValidade'; let element">
-        {{ element.dtValidade | date : "dd/MM/YYYY" }}
-      </ng-container>
+<div class="row justify-content-between">
+  <app-dynamic-table [select]="false" [columns]="columns" [rows]="rows" [pageSize]="pagination.pageSize"
+    [totalElements]="pagination.length" [actions]="actions" (actionClick)="runAction($event)"
+    (sortChange)="sortData($event)" (pageChange)="pageData($event)">
 
-    </sipol-dynamic-table>
-  </div>
+    <ng-container *dynamicTableColumnDef="'dtValidade'; let element">
+      {{ element.dtValidade | date : "dd/MM/YYYY" }}
+    </ng-container>
 
+  </app-dynamic-table>
 </div>
