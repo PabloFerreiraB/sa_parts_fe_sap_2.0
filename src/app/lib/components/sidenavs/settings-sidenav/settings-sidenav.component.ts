@@ -18,22 +18,22 @@ import { MatIconModule } from '@angular/material/icon';
       Back
     </app-sidenav-link>
 
-    <app-sidenav-link routerLink="/settings/account">
-      <mat-icon icon> person </mat-icon>
+    <app-sidenav-link routerLink="/settings/idioma">
+      <mat-icon icon> language </mat-icon>
 
-      Account
+      Português
     </app-sidenav-link>
 
-    <app-sidenav-link routerLink="/settings/security">
-      <mat-icon icon> security </mat-icon>
+    <app-sidenav-link routerLink="/settings/idioma">
+      <mat-icon icon> language </mat-icon>
 
-      Security
+      Inglês
     </app-sidenav-link>
 
-    <app-sidenav-link routerLink="/settings/notifications">
-      <mat-icon icon> notifications </mat-icon>
+    <app-sidenav-link routerLink="/settings/idioma">
+      <mat-icon icon> language </mat-icon>
 
-      Notifications
+      Espanhol
     </app-sidenav-link>
   `,
 })

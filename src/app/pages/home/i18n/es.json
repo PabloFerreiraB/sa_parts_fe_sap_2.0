@@ -1,9 +1,3 @@
 {
-  "title": "Ajustes",
-  "quick_access": {
-    "items": {
-      "register_goals": "Registrar objetivos",
-      "order_entry": "Entrada de pedido"
-    }
-  }
+  "title": "Ajustes"
 }

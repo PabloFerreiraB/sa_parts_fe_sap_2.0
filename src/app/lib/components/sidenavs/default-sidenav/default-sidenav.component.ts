@@ -7,30 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [CommonModule, SidenavLinkComponent, MatIconModule],
   template: `
-    <h1>Sidenav</h1>
-
-    <app-sidenav-link routerLink="/home">
-      <mat-icon icon>home</mat-icon>
-
-      Home
-    </app-sidenav-link>
-
-    <app-sidenav-link routerLink="/profile">
-      <mat-icon icon>account_circle</mat-icon>
-
-      Profile
-    </app-sidenav-link>
-
-    <app-sidenav-link routerLink="screen-1">
+    <app-sidenav-link routerLink="/order-entry">
       <mat-icon icon>screen_share</mat-icon>
 
-      Screen 1
-    </app-sidenav-link>
-
-    <app-sidenav-link routerLink="screen-2">
-      <mat-icon icon>screen_share</mat-icon>
-
-      Screen 2
+      order-entry
     </app-sidenav-link>
 
     <app-sidenav-link routerLink="/settings">

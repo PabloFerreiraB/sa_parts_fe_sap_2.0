@@ -1,9 +1,3 @@
 {
-  "title": "Título",
-  "quick_access": {
-    "items": {
-      "register_goals": "Registrar metas",
-      "order_entry": "Entrada de pedido"
-    }
-  }
+  "title": "Título"
 }
